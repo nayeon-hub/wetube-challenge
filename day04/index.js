@@ -26,6 +26,7 @@ const betweenAll = (req, res, next) => {
 
 const betweenRedirect = (req, res) => {
   res.redirect("/");
+  //redirect경우 전달해줄게 없어서 next사용 안해도 됨!
 };
 
 app.use(betweenAll);
