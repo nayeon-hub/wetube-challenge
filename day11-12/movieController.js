@@ -19,12 +19,9 @@ export const filterMovie = (req, res) => {
     query: { rating, year },
   } = req;
 
-  console.log(rating);
-  console.log(year);
-
   if (year) {
-    res.render("404", { value: year });
+    res.render("404", { values: getMovieByMinimumYear(year) });
   } else if (rating) {
-    res.render("404", { value: rating });
+    res.render("404", { values: getMovieByMinimumRating(rating) });
   }
 };
