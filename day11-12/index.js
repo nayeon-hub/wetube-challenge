@@ -11,7 +11,6 @@ app.set("view engine", "pug");
 app.use(localsMiddleware);
 app.use("/", movieRouter);
 app.use(function (err, req, res, next) {
-  //   console.error(err.stack);
   res.status(404);
   res.render("404");
 });
