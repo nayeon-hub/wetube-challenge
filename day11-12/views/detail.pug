@@ -1,6 +1,10 @@
 
-h1= theMovie.title 
-p= theMovie.summary 
-ul 
-    each item in theMovie.genres 
-        li= item
+html
+    head
+        title #{movieName} | #{siteTitle} 
+    body
+        h1= theMovie.title
+        p= theMovie.summary 
+        ul 
+            each item in theMovie.genres 
+                li= item
