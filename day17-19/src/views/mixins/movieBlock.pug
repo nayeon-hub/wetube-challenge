@@ -1,0 +1,5 @@
+mixin movieBlock(movie={})
+    .movieBlock 
+        a(href=`/${movie.id}`)
+            h2.movieBlock__title=movie.title
+            h3=movie.id

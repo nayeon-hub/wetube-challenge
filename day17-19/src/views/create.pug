@@ -1,0 +1,12 @@
+extends layouts/main
+
+block content 
+    h1 #{pageTitle}
+    form(action="/create",method="post")
+        input(type="text",placeholder="Title",name="title")
+        input(type="text",placeholder="Year",name="year")
+        input(type="text",placeholder="Rating",name="rating")
+        textarea(placeholder="Synopsis",name="synopsis")
+        input(type="text",placeholder="Genres",name="genres")
+        input(type="submit" value="Submit")
+
