@@ -1,0 +1,9 @@
+extends templates/layout
+
+block content
+    h1=pageTitle
+    form(action="/add", method="post")
+        input(type="text" placeholder="Title" name = "title")
+        textarea(type="text" placeholder="Synopsis" name="synopsis")
+        input(type="text" placeholder="Genres" name="genres")
+        button(type="submit") Add Movie 
