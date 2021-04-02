@@ -1,10 +1,8 @@
+extends layouts/main
 
-html
-    head
-        title #{movieName} | #{siteTitle} 
-    body
-        h1= theMovie.title
-        p= theMovie.summary 
-        ul 
-            each item in theMovie.genres 
-                li= item
+block content
+    h1= theMovie.title
+    p= theMovie.summary 
+    ul 
+        each item in theMovie.genres 
+            li= item

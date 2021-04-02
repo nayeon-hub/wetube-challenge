@@ -1,12 +1,10 @@
+extends layouts/main
 include mixin/movieBlock
 
-html
-    head
-        title Movies! | #{siteTitle}
-    body
-        h1 #{header}
-        each item in movieList 
-            +movieBlock({
-                id: item.id,
-                title: item.title
-            })  
+block content
+    h1 #{header}
+    each item in movieList 
+        +movieBlock({
+            id: item.id,
+            title: item.title
+        })  
