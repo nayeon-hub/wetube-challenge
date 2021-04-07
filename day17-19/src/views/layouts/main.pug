@@ -8,4 +8,13 @@ html
                     a(href="/") Home
                 li 
                     a(href="/create") Create
+            form(action="/search" method="get") 
+                select( name="option")
+                    option(value="") --option--
+                    option(value="year") Year
+                    option(value="title") Title
+                    option(value="rating") Rating
+                    option(value="genres") genres
+                input(type="text" placeholder="searching" name="search")
+                input(type="submit" value="search")
         block content

@@ -25,13 +25,7 @@ const detailMovie = (id) => {
     return "/:id";
   }
 };
-const searchMovie = (id) => {
-  if (id) {
-    return `/${id}/search`;
-  } else {
-    return "/:id/search";
-  }
-};
+
 const deleteMovie = (id) => {
   if (id) {
     return `/${id}/delete`;
@@ -43,11 +37,10 @@ const deleteMovie = (id) => {
 movieRouter.get("/", home);
 movieRouter.get("/create", getCreate);
 movieRouter.post("/create", postCreate);
-
+movieRouter.get("/search", movieSearch);
 movieRouter.get(detailMovie(), movieDetail);
 movieRouter.get(editMovie(), getEdit);
 movieRouter.post(editMovie(), postEdit);
 movieRouter.get(deleteMovie(), movieDelete);
-// movieRouter.get(searchMovie(), movieSearch);
 
 export default movieRouter;

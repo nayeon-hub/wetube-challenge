@@ -8,7 +8,7 @@ import Movie from "./models/Movie";
 
 export const home = async (req, res) => {
   try {
-    const movies = await Movie.find({});
+    const movies = await Movie.find({}).sort({ title: 1 });
     res.render("home", { pageTitle: "Home", movies });
   } catch (error) {
     res.render("home", { pageTitle: "Home", movies: [] });
@@ -24,7 +24,7 @@ export const movieDetail = async (req, res) => {
     const movie = await Movie.findById(id);
     res.render("movieDetail", { pageTitle: movie.title, movie });
   } catch (error) {
-    res.redirect(routes.home);
+    res.redirect("/");
   }
 };
 
@@ -63,15 +63,17 @@ export const postEdit = async (req, res) => {
   } = req;
 
   const g = genres.split(",");
-  console.log(id);
   try {
-    await Movie.findOneAndUpdate(id, {
-      title,
-      year,
-      synopsis,
-      genres: g,
-      rating,
-    });
+    await Movie.findOneAndUpdate(
+      { _id: id },
+      {
+        title,
+        year,
+        synopsis,
+        genres: g,
+        rating,
+      }
+    );
     res.redirect(`/${id}`);
   } catch (error) {
     console.log(error);
@@ -80,12 +82,42 @@ export const postEdit = async (req, res) => {
 
 export const movieDelete = async (req, res) => {
   const {
-    body: { id },
+    params: { id },
   } = req;
-  console.log(id);
+
   try {
-    await Movie.findOneAndDelete(id);
+    await Movie.findOneAndDelete({ _id: id });
     res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const movieSearch = async (req, res) => {
+  const {
+    query: { option, search },
+  } = req;
+  let movies = [];
+  try {
+    if (String(option) == "title") {
+      movies = await Movie.find({
+        title: search,
+      });
+    } else if (option == "year") {
+      movies = await Movie.find({
+        year: search,
+      });
+    } else if (option == "rating") {
+      movies = await Movie.find({
+        rating: search,
+      });
+    } else if (option == "genres") {
+      movies = await Movie.find({
+        genres: search,
+      });
+    }
+    res.render("movieSearch", { pageTitle: "Search", search, movies });
+    console.log(movies);
   } catch (error) {
     console.log(error);
   }
